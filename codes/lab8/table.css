@@ -1,0 +1,24 @@
+table, th, td{
+			border-collapse: collapse;
+			text-align: center;
+			/*table-layout: auto;*/
+			border : 1px solid black;
+		}
+		table.center{
+			margin-left: auto;
+			margin-right: auto;
+
+		}
+		th,td{
+			padding: 10px;
+			font-size: 110%;
+			margin: 4px;
+		}
+		th{
+			color: #0000cc;
+
+		}
+		td{
+			color: #e65c00;
+			font-weight: 600;
+		}

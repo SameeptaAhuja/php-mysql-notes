@@ -1,0 +1,50 @@
+CREATE TABLE node(
+    x INT(10) NOT NULL,
+    y INT(10) NOT NULL,
+    name CHAR(100) NOT NULL,
+    PRIMARY KEY(name),
+    CONSTRAINT uniqueName UNIQUE(x,y),
+    );
+
+INSERT INTO node (name,x,y) VALUES ('A',5,5);
+INSERT INTO node (name,x,y) VALUES ('B',15,5);
+INSERT INTO node (name,x,y) VALUES ('C',5,3);
+INSERT INTO node (name,x,y) VALUES ('D',11,3);
+
+CREATE TABLE edge(
+    edgeName CHAR(10) NOT NULL, 
+    name1 CHAR(10) NOT NULL,
+    weight INT UNSIGNED DEFAULT 1,
+	name2 CHAR(10) NOT NULL,
+    PRIMARY KEY(edgeName),
+    CONSTRAINT uniqueEdge UNIQUE(name1,name2),
+    FOREIGN KEY(name1) REFERENCES node (name) ON DELETE CASCADE ON UPDATE RESTRICT,
+    FOREIGN KEY(name2) REFERENCES node (name) ON DELETE CASCADE ON UPDATE RESTRICT
+    );
+INSERT INTO edge (edgeName,name1,weight,name2) VALUES('edgeAB','A',10,'B');
+INSERT INTO edge (edgeName,name1,weight,name2) VALUES('edgeAC','A',2,'C');
+INSERT INTO edge (edgeName,name1,weight,name2) VALUES('edgeAD','A',3,'D');
+INSERT INTO edge (edgeName,name1,weight,name2) VALUES('edgeDC','D',6,'C');
+INSERT INTO edge (edgeName,name1,weight,name2) VALUES('edgeBC','B',7,'C');
+
+DELETE FROM node WHERE name='A';
+
+CREATE TABLE node(
+    x INT(10) NOT NULL,
+    y INT(10) NOT NULL,
+    name CHAR(100) NOT NULL,
+    PRIMARY KEY(x,y),
+    CONSTRAINT uniqueName UNIQUE(name),
+    INDEX(name)
+    );
+
+CREATE TABLE edge(
+    edgeName CHAR(10) NOT NULL, 
+    name1 CHAR(10) NOT NULL,
+    weight INT UNSIGNED DEFAULT 1,
+	name2 CHAR(10) NOT NULL,
+    PRIMARY KEY(name1,name2),
+    CONSTRAINT uniqueEdgeName UNIQUE(edgeName),
+    FOREIGN KEY(name1) REFERENCES node (name) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(name2) REFERENCES node (name) ON UPDATE CASCADE ON DELETE CASCADE
+    );

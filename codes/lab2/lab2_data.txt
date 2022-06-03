@@ -1,0 +1,4 @@
+DBMS, MA518, 8, AA
+Complex, MA500, 8, BB
+Real_Anaylsis, MA10, 8, AB
+Functional, MA10, 8, CC

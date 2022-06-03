@@ -1,0 +1,30 @@
+CREATE TABLE node(
+    x INT(10) NOT NULL,
+    y INT(10) NOT NULL,
+    PRIMARY KEY(x,y)
+    );
+
+INSERT INTO node (x,y) VALUES (5,5);
+
+SELECT * FROM node;
+
+SELECT * FROM node WHERE x=y;
+
+CREATE TABLE edge(
+    x1 INT(10) NOT NULL,
+    y1 INT(10) NOT NULL,
+    weight INT UNSIGNED DEFAULT 1,
+    x2 INT(10) NOT NULL,
+    y2 INT(10) NOT NULL,
+    PRIMARY KEY(x1,y1,x2,y2),
+    FOREIGN KEY(x1,y1) REFERENCES node (x,y) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(x2,y2) REFERENCES node (x,y) ON DELETE CASCADE ON UPDATE CASCADE
+    );
+
+INSERT INTO edge (x1,y1,weight,x2,y2) VALUES (5,5,2,5,3);
+
+SELECT * FROM edge;
+
+UPDATE edge
+SET weight=20
+WHERE x1=5 AND y1=5 AND x2=15 AND y2=5;
